@@ -1,2 +1,0 @@
-# HarshaKumar
-About me page
