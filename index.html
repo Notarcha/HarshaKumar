@@ -57,30 +57,49 @@
   max-width: 900px;
   margin: 0 auto;
 }
-.project {
-  margin-bottom: 1em;
+.projects-list {
+  max-width: 700px;
+  margin: 0 auto;
 }
+
+.project {
+  margin-bottom: 1.5em;
+  border-radius: 7px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+
 .project-title {
+  display: block;
   width: 100%;
-  background: #eee;
+  background: #28425B; /* Choose a color that fits your theme */
+  color: #F3F6FA;      /* Light text for contrast */
   border: none;
-  padding: 1em;
+  padding: 1.2em 1.5em;
   text-align: left;
   font-size: 1.1em;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0;
   transition: background 0.2s;
+  outline: none;
+  white-space: normal;
+  word-break: break-word;
 }
+
+.project-title:focus,
 .project-title:hover {
-  background: #ccc;
+  background: #395e8b;
 }
+
 .project-content {
   display: none;
-  padding: 1em;
-  background: #fafafa;
-  border-radius: 4px;
-  margin-top: 0.5em;
+  background: #f7fafc;
+  color: #222;
+  padding: 1.2em 1.5em;
+  border-top: 1px solid #e0e0e0;
 }
+
 .project-content.active {
   display: block;
 }
@@ -102,11 +121,12 @@
 						<!-- Projects -->
 							<article id="Projects">
 								<h2 class="major">Projects</h2>
-	<div class="projects-list">
-	<!-- Project 1 -->
+<div class="projects-list">
     <div class="project">
-      <button class="project-title" onclick="showProject(0)">Digging Deeper: Evolution of Burrowing and Behavioral Traits in Lagomorphs</button>	
-	<div class="project-content">
+      <button class="project-title" onclick="toggleProject(0)" aria-expanded="false">
+        Digging Deeper: Evolution of Burrowing and Behavioral Traits in Lagomorphs
+      </button>
+      <div class="project-content" aria-hidden="true">
   
 <p>Lagomorphs—hares, rabbits, and pikas—are closely related, yet show striking diversity in their behavior, sociality, and life history. Some dig their own burrows, some use burrows made by others, while others live in rocky crevices or open nests (Species specific traits). This variation offers a unique window into the evolution of animal behavior and its relationship to ecological pressures.Burrowing is a particularly intriguing trait. It's energetically costly, yet may offer key advantages like thermal regulation and predator avoidance. But how does this behavior connect with other traits like sociality and life history strategies? Are burrowers more social? Do they have different life history traits? And what drives these patterns—climate, body size, or evolutionary history?<p>
 
@@ -130,11 +150,15 @@ Key findings include:
 		<p>Figure 2:Burrowing-Sociality-Fecundity triangle describing associations between traits. The thickness of the arrows and the number of ‘+’ marks indicate the strength of relationships, as seen in Lagomorpha.<p>
 	</div>
     </div>
-								
-	<h2 class="paper-title">
- Asian pika populations track local glaciation events through the Pleistocene 
-</h2>					
-		<p>Understanding how species have responded to climate change in the past—especially during the Pleistocene—can offer valuable clues about how they might respond to future climate shifts. Pikas, as cold-adapted, high-elevation specialists, provide an ideal system to explore these dynamics. The elevational shift hypothesis suggests that during warmer interglacial periods, pikas would be pushed up the elevation to track cooler habitats (leading to smaller, isolated populations), while during colder glacial periods, they would expand to lower elevations, rescuing populations from inbreeding.
+
+	
+    <div class="project">
+      <button class="project-title" onclick="toggleProject(0)" aria-expanded="false">
+       Asian pika populations track local glaciation events through the Pleistocene 
+      </button>
+      <div class="project-content" aria-hidden="true">
+
+<p>Understanding how species have responded to climate change in the past—especially during the Pleistocene—can offer valuable clues about how they might respond to future climate shifts. Pikas, as cold-adapted, high-elevation specialists, provide an ideal system to explore these dynamics. The elevational shift hypothesis suggests that during warmer interglacial periods, pikas would be pushed up the elevation to track cooler habitats (leading to smaller, isolated populations), while during colder glacial periods, they would expand to lower elevations, rescuing populations from inbreeding.
 
 To test this idea, I combined two complementary approaches:
 
@@ -154,16 +178,25 @@ b) Population Genomic analyses (PSMC) to infer changes in population size over e
 <img src="images/PSMCs.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />
 			<p>Figure 2: PSMCs for three sympatric species of pikas from Changthang Biotic Province<p>
 
+</div>
+    </div>
 
-<h2 class="paper-title">
- Sympatric pikas partition microhabitats differently across a spatial-elevational gradient 
-</h2>					
+<div class="project">
+      <button class="project-title" onclick="toggleProject(0)" aria-expanded="false">
+       Sympatric pikas partition microhabitats differently across a spatial-elevational gradient 
+      </button>
+      <div class="project-content" aria-hidden="true">
+					
 		<p>How closely related species with similar ecological requirements co-occur and navigate competition has been a topic of great discussion among community ecologists. Studies have shown that microhabitat partitioning in patchy environments can support the co-existence of sympatric species at small spatial scales.  The project quantified niche spaces and directional niche overlaps of three cold-adapted high-altitude pikas from the Trans-Himalayas that display varying degrees of sympatry along elevational and spatial scales to understand how they respond to inter-species competition. Vegetation and landscape-level features associated with different species across elevational bands were doucmented and key ecological factors that drive the presence of these species was identified. The social, burrowing, Ochotona nubrica was inferred to prefer mature stands and a large cover of shrub vegetation on pastures across elevational bands (2800-4500m). The social, burrowing, Ochotona ladacensis was inferred to be a high-elevation specialist (4200-6000m), occupying both stunted alpine scrub habitats and steppes. The asocial, rock-dwelling, Ochotona macrotis was inferred to prefer microhabitats with good rock cover and large-sized rocks across elevations (2800-6000m), while being associated with significantly greener microhabitats at low elevations in the summer. The visualization of directional niche overlaps across species and populations highlighted interesting scale-dependent patterns of niche segregation between species that are rarely examined. While species may largely be considered genaralists at large spatial scales, they are likely to be specialists at smaller spatial scales. With rapidly changing climate and land-use patterns in the Himalayas negatively impacting cold-adapted mountain specialists, a nuanced understanding of microhabitat associationships displayed by such species in sympatric zones will likely be useful for conservation planning. <p>
 
 	<img src="images/Niches.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />	 
 		<p>Ten elliptical projections of niche space constructed using PC transformed axes for each species/population pair (NicheRover); (b, e, h) -  Directional niche overlaps between species/ population pairs (probability of species 1 being found in the niche of species 2); (c, f, i) - Niche width for each species/population (n-dimensional hypervolume). Bioclimatic niches at regional scales are represented on panels: a-c; ecological niches at regional scales: d-f; and ecological niches at local scales: g-i.  
 Legend -  OL: Ochotona ladacensis, ON: Ochotona nubrica, OM: Ochotona macrotis, OL-H: Ochotona ladacensis high elevation, ON-H: Ochotona nubrica high elevation, ON-L: Ochotona nubrica low elevation, OM-H: Ochotona macrotis high elevation, OM-L:  Ochotona macrotis low elevation.
 <p>
+	</div>
+    </div>
+
+  </div>
 
 			
 							</article>
@@ -468,10 +501,20 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/main.js"></script>
 
 		<script>
-function showProject(index) {
-  var contents = document.querySelectorAll('.project-content');
+function toggleProject(idx) {
+  const contents = document.querySelectorAll('.project-content');
+  const buttons = document.querySelectorAll('.project-title');
   contents.forEach((content, i) => {
-    content.classList.toggle('active', i === index);
+    if (i === idx) {
+      const isActive = content.classList.contains('active');
+      content.classList.toggle('active');
+      content.setAttribute('aria-hidden', isActive ? 'true' : 'false');
+      buttons[i].setAttribute('aria-expanded', !isActive);
+    } else {
+      content.classList.remove('active');
+      content.setAttribute('aria-hidden', 'true');
+      buttons[i].setAttribute('aria-expanded', 'false');
+    }
   });
 }
 </script>
