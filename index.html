@@ -68,40 +68,9 @@
   overflow: hidden;
 }
 
-.project-title {
-  display: block;
-  width: 100%;
-  background: transparent;        /* No background */
-  color: #28425B;                 /* Dark, readable text */
-  border: none;
-  padding: 1em 0.5em;             /* Less padding */
-  text-align: left;
-  font-size: 1em;                 /* Normal font size */
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 0;
-  transition: background 0.2s;
-  outline: none;
-  white-space: normal !important;            /* Allow titles to wrap */
-  word-break: break-word !important;
-  overflow-wrap: break-word !important;      
-  box-shadow: none;               /* Remove button shadow */
-}
 
-.project-title:focus,
-.project-title:hover {
-  background: transparent;
-  color: #28425B;  /* Or your normal text color */
-}
-			
 .project:not(:last-child) .project-title {
   border-bottom: 1px solid #e0e0e0;
-}
-
-.project-title {
-  overflow-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
 }
 
 .project-content {
@@ -116,21 +85,25 @@
   display: block;
 }
 
-			.projects-list, .project, .project-title {
+.projects-list, .project, .project-title {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
+  display: block !important;
 }
 
 .project-title {
-  display: block !important;
   white-space: normal !important;
   word-break: break-word !important;
   overflow-wrap: break-word !important;
   text-overflow: unset !important;
   font-size: 1em !important;
   padding: 1em 0.5em !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: none !important;
 }
+			
 </style>
 	</nav>
 </header>
