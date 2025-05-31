@@ -62,14 +62,21 @@
 
 /* Each project card */
 #Projects .project {
-  margin-bottom: 1.5em;
+  margin-bottom: 2em;
+  padding-bottom: 0.7em;
+  border-bottom: 1px solid #eee;
   border-radius: 7px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  background: none;
   overflow: visible !important;
   display: block !important;
 }
 
-/* Project titles: fix truncation and allow wrapping */
+#Projects .project:last-child {
+  border-bottom: none;
+}
+
+/* Project titles: running text, no bold, no caps, good spacing */
 #Projects .project-title {
   display: block !important;
   width: 100% !important;
@@ -82,30 +89,45 @@
   overflow: visible !important;
   background: transparent !important;
   border: none !important;
-  font-size: 1em !important;
-  font-weight: bold;
+  font-size: 1.08em !important;
+  font-weight: 400 !important;              /* Not bold */
   color: #28425B;
-  padding: 1em 0.5em !important;
+  padding: 0.6em 0 0.3em 0.2em !important; /* Less padding, more natural spacing */
   box-shadow: none !important;
   text-align: left;
   cursor: pointer;
+  text-transform: none !important;          /* No all caps */
+  letter-spacing: normal;
+  line-height: 1.35;
+  border-radius: 0;
+  margin: 0;
+  transition: background 0.2s, color 0.2s;
 }
 
-/* Add border under all but last project-title */
+/* Optional: on hover/focus underline and subtle background */
+#Projects .project-title:hover,
+#Projects .project-title:focus {
+  color: #13406c;
+  text-decoration: underline;
+  background: #f3f7fa;
+}
+
+/* Remove border from project title itself (moved to .project) */
 #Projects .project:not(:last-child) .project-title {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: none;
 }
 
-/* Project content section (collapsible) */
+/* Project content (collapsible) */
 #Projects .project-content {
   display: none;
   background: #f7fafc;
   color: #222;
   padding: 1.2em 1.5em;
+  border-radius: 0.5em;
   border-top: 1px solid #e0e0e0;
+  margin-top: 0.3em;
 }
 
-/* Show project content when active */
 #Projects .project-content.active {
   display: block;
 }
