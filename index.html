@@ -72,26 +72,27 @@
 .project-title {
   display: block;
   width: 100%;
-  background: transparent;   /* No background */
-  color: #28425B;            /* Dark, readable text */
+  background: transparent;        /* No background */
+  color: #28425B;                 /* Dark, readable text */
   border: none;
-  padding: 1em 0.5em;        /* Less padding */
+  padding: 1em 0.5em;             /* Less padding */
   text-align: left;
-  font-size: 1em;            /* Normal font size */
+  font-size: 1em;                 /* Normal font size */
   font-weight: bold;
   cursor: pointer;
   border-radius: 0;
   transition: background 0.2s;
   outline: none;
-  white-space: normal;
+  white-space: normal;            /* Allow titles to wrap */
   word-break: break-word;
-  box-shadow: none;          /* Remove button shadow */
+  overflow-wrap: break-word;      /* <-- Add this missing semicolon */
+  box-shadow: none;               /* Remove button shadow */
 }
 
 .project-title:focus,
 .project-title:hover {
-  background: #f0f4f8;      /* Subtle highlight on hover/focus */
-  color: #1d2d3a;
+  background: transparent;
+  color: #28425B;  /* Or your normal text color */
 }
 			
 .project:not(:last-child) .project-title {
