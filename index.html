@@ -20,7 +20,21 @@
   }
 </style>
 
-	</head>
+	
+<style>
+  .collapsible {
+    cursor: pointer;
+    color: #0056b3;
+    font-weight: bold;
+    margin: 1em 0 0.3em;
+  }
+  .collapsible + .project-details {
+    display: none;
+    margin-bottom: 2em;
+  }
+</style>
+
+</head>
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -78,7 +92,11 @@
         </ul>
     </nav>
 
-    <article id="project-burrowing">
+    
+<div>
+  <div class="collapsible" onclick="toggleProject(this)">Digging Deeper: Evolution of Burrowing and Behavioral Traits in Lagomorphs</div>
+  <div class="project-details">
+
         <h2 class="major">Digging Deeper: Evolution of Burrowing and Behavioral Traits in Lagomorphs</h2>
         <p>Lagomorphs—hares, rabbits, and pikas—are closely related, yet show striking diversity in their behavior, sociality, and life history. Some dig their own burrows, some use burrows made by others, while others live in rocky crevices or open nests (Species specific traits). This variation offers a unique window into the evolution of animal behavior and its relationship to ecological pressures.Burrowing is a particularly intriguing trait. It's energetically costly, yet may offer key advantages like thermal regulation and predator avoidance. But how does this behavior connect with other traits like sociality and life history strategies? Are burrowers more social? Do they have different life history traits? And what drives these patterns—climate, body size, or evolutionary history?</p>
 
@@ -99,8 +117,8 @@
         <p>However, a strong pattern emerged: burrowing species tended to be more social and had more r-selected life histories (higher reproductive rates), while rock-dwelling species were more solitary and K-selected. This supports a burrowing–sociality–fecundity link where the energetic costs of burrowing may favor both social living and faster reproduction. Although large-scale data didn't confirm burrowing as a current adaptation to environmental extremes, ongoing field work on pika burrows suggests that they provide significant cooling advantages during summer heat, more so than keeping pikas warm in the winter. Historically, burrowing may have been crucial in helping these animals survive glacial cycles on the Qinghai-Tibetan Plateau, by buffering them against dramatic climate swings. Together, these findings suggest that behavioral evolution is deeply entwined with life history strategies, and that burrows may have played a critical—if complex—role in the ecological success of Lagomorphs.</p>
         <img src="images/State_Transitions.png" alt="Burrowing-Sociality-Fecundity triangle" style="max-width: 100%; height: auto; border-radius: 0;" />	 
         <p>Figure 2:Burrowing-Sociality-Fecundity triangle describing associations between traits. The thickness of the arrows and the number of ‘+’ marks indicate the strength of relationships, as seen in Lagomorpha.</p>
-        <p><a href="#Projects" class="button back-to-projects">Back to Projects</a></p>
-    </article>
+        </div>
+</div>
 
     <article id="project-pika-populations">
         <h2 class="major">Asian pika populations track local glaciation events through the Pleistocene</h2>
@@ -123,8 +141,8 @@
 
         <img src="images/PSMCs.png" alt="PSMCs for three sympatric species of pikas" style="max-width: 100%; height: auto; border-radius: 0;" />
         <p>Figure 2: PSMCs for three sympatric species of pikas from Changthang Biotic Province</p>
-        <p><a href="#Projects" class="button back-to-projects">Back to Projects</a></p>
-    </article>
+        </div>
+</div>
 
     <article id="project-pika-microhabitats">
         <h2 class="major">Sympatric pikas partition microhabitats differently across a spatial-elevational gradient</h2>
@@ -133,8 +151,8 @@
         <img src="images/Niches.png" alt="Elliptical projections of niche space" style="max-width: 100%; height: auto; border-radius: 0;" />	 
         <p>Figure 1 : Ten elliptical projections of niche space constructed using PC transformed axes for each species/population pair (NicheRover); (b, e, h) -  Directional niche overlaps between species/ population pairs (probability of species 1 being found in the niche of species 2); (c, f, i) - Niche width for each species/population (n-dimensional hypervolume). Bioclimatic niches at regional scales are represented on panels: a-c; ecological niches at regional scales: d-f; and ecological niches at local scales: g-i.  
         Legend -  OL: Ochotona ladacensis, ON: Ochotona nubrica, OM: Ochotona macrotis, OL-H: Ochotona ladacensis high elevation, ON-H: Ochotona nubrica high elevation, ON-L: Ochotona nubrica low elevation, OM-H: Ochotona macrotis high elevation, OM-L:  Ochotona macrotis low elevation.</p>
-        <p><a href="#Projects" class="button back-to-projects">Back to Projects</a></p>
-    </article>
+        </div>
+</div>
 
     <article id="project-haying">
         <h2 class="major">Characterization of haying behavior by the Ladakh Pika (Ochotona ladacensis) and the Nubra Pika (Ochotona nubrica) from the Changthang, Ladakh, India</h2>
@@ -142,8 +160,8 @@
 
         <img src="images/Haypiles.png" alt="Typical haypiles of Ladakh pika and Nubra pika" style="max-width: 100%; height: auto; border-radius: 0;" />	 
         <p>Figure 1 : a) Typical haypiles of Ladakh pika and Nubra pika; b) Pens used for making notes on field were used as a reference to allow for adding scale bars on images.</p>
-        <p><a href="#Projects" class="button back-to-projects">Back to Projects</a></p>
-    </article>
+        </div>
+</div>
 
 </article>
 						
@@ -446,5 +464,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-	</body>
+	
+<script>
+  function toggleProject(header) {
+    const content = header.nextElementSibling;
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+</body>
 </html>
