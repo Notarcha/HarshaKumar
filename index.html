@@ -520,10 +520,12 @@ function toggleProject(idx) {
   contents.forEach((content, i) => {
     if (i === idx) {
       const isActive = content.classList.contains('active');
-      content.classList.toggle('active');
+      // Toggle the clicked one
+      content.classList.toggle('active', !isActive);
       content.setAttribute('aria-hidden', isActive ? 'true' : 'false');
       buttons[i].setAttribute('aria-expanded', !isActive);
     } else {
+      // Always close the others
       content.classList.remove('active');
       content.setAttribute('aria-hidden', 'true');
       buttons[i].setAttribute('aria-expanded', 'false');
