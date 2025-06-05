@@ -41,7 +41,7 @@
 			<li><a href="#About_Me">About Me</a></li>
 			<li><a href="#Projects">Projects</a></li>
 			<li><a href="#Publications">Publications</a></li>
-			<li><a href="#contact">Contact</a></li>
+			<li><a href="#Contact">Contact</a></li>
 		</ul>
 		<style>
 	#header nav ul li a {
@@ -334,7 +334,7 @@ b) Population Genomic analyses (PSMC) to infer changes in population size over e
   </ul>
 </article>
 
-						<article id="contact">
+						<article id="Contact">
   <h2 class="major">Contact</h2>
   <p>
     Harsha Kumar<br>
@@ -622,33 +622,6 @@ function toggleProject(idx) {
     }
   });
 }
-</script>
-		<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Hide all articles except the first by default
-  const main = document.getElementById('main');
-  const articles = main.querySelectorAll('article');
-  articles.forEach((article, idx) => {
-    article.style.display = idx === 0 ? 'block' : 'none';
-  });
-
-  // Show the correct article when a nav link is clicked
-  document.querySelectorAll('#header nav a').forEach(link => {
-    link.addEventListener('click', function(event) {
-      const href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        event.preventDefault();
-        const target = main.querySelector(href);
-        if (target) {
-          articles.forEach(article => article.style.display = 'none');
-          target.style.display = 'block';
-          // Optionally scroll to top of main area
-          main.scrollIntoView({behavior: 'smooth'});
-        }
-      }
-    });
-  });
-});
 </script>
 
 	</body>
