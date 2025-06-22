@@ -160,6 +160,54 @@
                        .project-highlight-title {
   text-align: center;
 }
+                        .slideshow-container {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+}
+
+.mySlides {
+  display: none;
+  width: 100%;
+}
+.mySlides img {
+  width: 100%;
+  border-radius: 0.5em;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 14px 18px;
+  color: #28425B;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background: #f7fafcbb;
+  transform: translateY(-50%);
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev {
+  left: 0;
+}
+.dot {
+  cursor: pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+.active, .dot:hover {
+  background-color: #28425B;
+}
 .project-highlight-title p {
   font-size: 0.95em;
   margin-top: 0.3em;
@@ -275,7 +323,7 @@
                 
                    <div class="project">
         <button class="project-title" onclick="toggleProject(3)" aria-expanded="false">
-            Behavioral adaptations in seasonally flucturating resource environments
+            Animal Behavior
         </button>
                             <div class="project-content" aria-hidden="true">
                                 <div class="project-highlight-title">
@@ -379,9 +427,7 @@
          <div class="mySlides fade">
             <img src="images/IMG_5084.JPG" style="width:100%">
         </div>
-         <div class="mySlides fade">
-            <img src="images/IMG_8335.JPG" style="width:100%">
-        </div>
+         
         <!-- Add more slides as needed -->
 
         <!-- Next/prev buttons -->
@@ -421,7 +467,32 @@
             </footer>
 
         </div>
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
 
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  if(dots[slideIndex-1]) dots[slideIndex-1].className += " active";
+}
+</script>
         <!-- BG -->
         <div id="bg"></div>
 
