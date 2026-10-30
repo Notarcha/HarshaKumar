@@ -32,6 +32,7 @@
                         <img src="images/Website_profile.jpg" alt="Profile Picture" style="max-width: 25%; height: auto; border-radius: 0;" />
                         <h1>Harsha Kumar</h1>
                         <p>Behavioural Ecologist</p>
+                        <p><a href="mailto:tailedpalmfly@gmail.com">tailedpalmfly@gmail.com</a></p>
                         <p>Post-doctoral fellow at TIFR Hyderabad</p>
                     </div>
                 </div>
@@ -40,10 +41,19 @@
     <li><a href="#About_Me">About Me</a></li>
     <li><a href="#Projects">Projects</a></li>
     <li><a href="#Publications">Publications</a></li>
-    <li><a href="#Contacts">Contact Me</a></li>
     <li><a href="#Gallery">Photo Gallery</a></li>
 </ul>
                     <style>
+                        /* Keep nav dividers even when the menu has an even number of items */
+                        #header nav.use-middle:after {
+                            display: none !important;
+                        }
+                        @media screen and (min-width: 481px) {
+                            #header nav.use-middle ul li.is-middle {
+                                border-left: solid 1px #ffffff !important;
+                            }
+                        }
+
                         #header nav ul li a {
                             background: none !important;
                             border: none !important;
@@ -598,15 +608,6 @@
     </div>
 </article>
 
-                <article id="Contacts">
-    <h2 class="major">Contact Me</h2>
-    <ul>
-        <p> Email: tailedpalmfly@gmail.com </p>
-        <p> Phone: +91 8431285013 </p>
-        <li>Instagram: <a href= "https://www.instagram.com/meeting_mystical_creatures/" target="_blank"> Instagram </a></li>
-        <!-- Add more contact info as needed -->
-    </ul>
-</article>
 
                 <!-- Elements (untouched, left as original) -->
                 <article id="elements">
