@@ -205,6 +205,56 @@
 #Projects .project-title {
   text-align: center;
 } 
+/* Sub-projects inside each project tab */
+#Projects .subproject {
+  margin: 0 0 1.5em 0;
+  padding-bottom: 1.2em;
+  border-bottom: 1px solid #e0e0e0;
+}
+#Projects .subproject:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#Projects .subproject-header {
+  cursor: pointer;
+  outline: none;
+  border-radius: 0.4em;
+  padding: 0.3em 0.3em 0.6em 0.3em;
+  transition: background 0.2s;
+}
+#Projects .subproject-header:hover,
+#Projects .subproject-header:focus {
+  background: #eaf1f6;
+}
+#Projects .subproject-header .project-highlight-title {
+  margin-top: 0.4em;
+}
+#Projects .subproject-preview {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  margin: 0.8em auto 0.2em auto;
+  border-radius: 0.4em;
+}
+#Projects .subproject-hint {
+  display: block;
+  text-align: center;
+  font-size: 0.85em;
+  color: #28425B;
+  margin-top: 0.4em;
+}
+#Projects .subproject-body {
+  display: none;
+  margin-top: 0.8em;
+}
+#Projects .subproject.open .subproject-body {
+  display: block;
+}
+#Projects .subproject.open .subproject-preview {
+  display: none;
+}
+
                     </style>
                 </nav>
             </header>
@@ -236,10 +286,16 @@
                                 Trait Evolution 
                             </button>
                             <div class="project-content" aria-hidden="true">
-                                <div class="project-highlight-title">
+                                <div class="subproject">
+                                <div class="subproject-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleSubproject(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSubproject(this);}">
+                                    <div class="project-highlight-title">
                                     Digging Deeper: Evolution of Burrowing and Behavioral Traits in Lagomorphs
                                     <p>Harsha Kumar and Nandini Rajamani</p>
                                 </div>
+                                    <img class="subproject-preview" src="images/Phylogeny.png" alt="" />
+                                    <span class="subproject-hint">Click to read more &#9662;</span>
+                                </div>
+                                <div class="subproject-body">
                                 <p>Lagomorphs—hares, rabbits, and pikas—are closely related, yet show striking diversity in their behavior, sociality, and life history. Some dig their own burrows, some use burrows made by others, while others live in rocky crevices or open nests (Species specific traits). This variation offers a unique window into the evolution of animal behavior and its relationship to ecological pressures. Burrowing is a particularly intriguing trait. It's energetically costly, yet may offer key advantages like thermal regulation and predator avoidance. But how does this behavior connect with other traits like sociality and life history strategies? Are burrowers more social? Do they have different life history traits? And what drives these patterns—climate, body size, or evolutionary history?</p>
                                 <p>To explore these questions, I reconstructed the first comprehensive, time-calibrated phylogeny of Lagomorpha, using a combination of public exome data and primary whole-genome sequencing to resolve key relationships. This evolutionary tree allowed me to trace the origins and transitions of behavioral traits across the group.</p>
                                 <img src="images/Phylogeny.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />
@@ -253,16 +309,26 @@
                                 <p>However, a strong pattern emerged: burrowing species tended to be more social and had more r-selected life histories (higher reproductive rates), while rock-dwelling species were more solitary and K-selected. This supports a burrowing–sociality–fecundity link where the energetic costs of burrowing may favor both social living and faster reproduction. Although large-scale data didn't confirm burrowing as a current adaptation to environmental extremes, ongoing field work on pika burrows suggests that they provide significant cooling advantages during summer heat, more so than keeping pikas warm in the winter. Historically, burrowing may have been crucial in helping these animals survive glacial cycles on the Qinghai-Tibetan Plateau, by buffering them against dramatic climate swings. Together, these findings suggest that behavioral evolution is deeply entwined with life history strategies, and that burrows may have played a critical—if complex—role in the ecological success of Lagomorphs.</p>
                                 <img src="images/State_Transitions.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />
                                 <p>Figure 2: Burrowing-Sociality-Fecundity triangle describing associations between traits. The thickness of the arrows and the number of ‘+’ marks indicate the strength of relationships, as seen in Lagomorpha.</p>
-                                <div class="project-highlight-title">
+                                </div>
+                                </div>
+                                <div class="subproject">
+                                <div class="subproject-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleSubproject(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSubproject(this);}">
+                                    <div class="project-highlight-title">
                                     The Evolution of Finch Mouth Markings: Signals, Strategy, or Chance?
                                    <p>Harsha Kumar and Nandini Rajamani</p>
                                 </div>
+                                    <img class="subproject-preview" src="images/Gouldian_finch.jpg" alt="" />
+                                    <span class="subproject-hint">Click to read more &#9662;</span>
+                                </div>
+                                <div class="subproject-body">
                                 <p>Young Estrildid finches display distinct mouth markings that vary in color, shape, and structure across species that disappear before fledging. While it’s known that vocal signals help young birds communicate with their parents to receive food, it raises the question—do these unique mouth markings serve a similar purpose? Alternatively, these mouth markings could have evolved in response to pressures of brood parasitism.</p>
                                 <img src="images/Gouldian_finch.jpg" alt="Profile Picture" style="max-width: 60%; height: auto; border-radius: 0;" />
                                 <p>To explore this, we studied the evolutionary history of these traits using stochastic character mapping on a detailed finch family tree. We used open source photographs of finch mouth markings from aviaries around the world including published work to score different parts of the mouth for color and markings/patterns. We inferred the ancestor of all Estrildid finches to have extremely simple mouth features in contrast to species at current timescales.</p>
                                 <img src="images/pattern_evolution.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />
                                 <p>We also investigated whether these features are adaptive today by analyzing how factors like brood parasitism, resource abundance and sibling competition may influence their development. Our findings suggest that: a) mouth marking color/patterns were not different across habitats with differentially resource abundance, but species with larger clutch sizes (higher sibling competition) had carotenoid-colored mouths. These colors could potentially be indicators of quality to parents while allocating food items to chicks; b) Parasite mouth markings don't exactly match that of their hosts especially in instances when the parasite has multiple hosts. It must be noted however, that species in the Australasian clade that lack brood parasites have the most elaborate mouth markings. Taken together, our results point to a mix of evolutionary pressures. We hypothesize that ancient brood parasitism by members of the Viduidae family before the split of the African and Australasian clades, along with genetic drift, best explains the complex and uneven distribution of mouth markings observed today.</p>
-                            </div>
+                                </div>
+                                </div>
+                                </div>
                         </div>
 
                         <div class="project">
@@ -270,10 +336,16 @@
                                 Population Genomics
                             </button>
                             <div class="project-content" aria-hidden="true">
-                                <div class="project-highlight-title">
+                                <div class="subproject">
+                                <div class="subproject-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleSubproject(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSubproject(this);}">
+                                    <div class="project-highlight-title">
                                     Asian pika populations track local glaciation events through the Pleistocene
                                     <p>Harsha Kumar, Nagarjun Vijay and Nandini Rajamani</p>
                                 </div>
+                                    <img class="subproject-preview" src="images/SDMs.png" alt="" />
+                                    <span class="subproject-hint">Click to read more &#9662;</span>
+                                </div>
+                                <div class="subproject-body">
                                 <p>Understanding how species have responded to climate change in the past—especially during the Pleistocene—can offer valuable clues about how they might respond to future climate shifts. Pikas, as cold-adapted, high-elevation specialists, provide an ideal system to explore these dynamics. The elevational shift hypothesis suggests that during warmer interglacial periods, pikas would be pushed up the elevation to track cooler habitats (leading to smaller, isolated populations), while during colder glacial periods, they would expand to lower elevations, rescuing populations from inbreeding.</p>
                                 <p>To test this idea, I combined two complementary approaches:</p>
                                 <ul>
@@ -287,24 +359,34 @@
                                 <p>Together, this work underscores the need to integrate paleoclimate, local geology, and population genomics when reconstructing species demographic histories. It also emphasizes that species-level models (SDMs) may not always capture responses of populations (PSMCs). A deep understanding of species responses to climate change is necessary for conservation planning and a combination of methods is likely to useful in this regard.</p>
                                 <img src="images/PSMCs.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />
                                 <p>Figure 2: PSMCs for three sympatric species of pikas from Changthang Biotic Province</p>
-                            </div>
+                                </div>
+                                </div>
+                                </div>
                         </div>
                         <div class="project">
                             <button class="project-title" onclick="toggleProject(2)" aria-expanded="false">
                                 Community Ecology 
                             </button>
                             <div class="project-content" aria-hidden="true">
-                                <div class="project-highlight-title">
+                                <div class="subproject">
+                                <div class="subproject-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleSubproject(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSubproject(this);}">
+                                    <div class="project-highlight-title">
                                     Sympatric pikas partition microhabitats differently across a spatial-elevational gradient 
                                     <p>Harsha Kumar, Dhanesh Ponnu, Senan D'souza, Dhiraj Das, Skarma Thundup and Nandini Rajamani</p>
                                 </div>
+                                    <img class="subproject-preview" src="images/Niche_segregation.png" alt="" />
+                                    <span class="subproject-hint">Click to read more &#9662;</span>
+                                </div>
+                                <div class="subproject-body">
                                 <p>How closely related species with similar ecological requirements co-occur and navigate competition has been a topic of great discussion among community ecologists. Studies have shown that microhabitat partitioning in patchy environments can support the co-existence of sympatric species at small spatial scales. The project quantified niche spaces and directional niche overlaps of three cold-adapted high-altitude pikas from the Trans-Himalayas that display varying degrees of sympatry along elevational and spatial scales to understand how they respond to inter-species competition. Vegetation and landscape-level features associated with different species across elevational bands were documented and key ecological factors that drive the presence of these species was identified. The social, burrowing, Ochotona nubrica was inferred to prefer mature stands and a large cover of shrub vegetation on pastures across elevational bands (2800-4500m). The social, burrowing, Ochotona ladacensis was inferred to be a high-elevation specialist (4200-6000m), occupying both stunted alpine scrub habitats and steppes. The asocial, rock-dwelling, Ochotona macrotis was inferred to prefer microhabitats with good rock cover and large-sized rocks across elevations (2800-6000m), while being associated with significantly greener microhabitats at low elevations in the summer.</p>
                                 <img src="images/Niche_segregation.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />
                                 <p>The visualization of directional niche overlaps across species and populations highlighted interesting scale-dependent patterns of niche segregation between species that are rarely examined. While species may largely be considered generalists at large spatial scales, they are likely to be specialists at smaller spatial scales. With rapidly changing climate and land-use patterns in the Himalayas negatively impacting cold-adapted mountain specialists, a nuanced understanding of microhabitat associationships displayed by such species in sympatric zones will likely be useful for conservation planning.</p>
                                 <img src="images/Niches.png" alt="Profile Picture" style="max-width: 100%; height: auto; border-radius: 0;" />
                                 <p>Elliptical projections of niche space constructed using PC transformed axes for each species/population pair (NicheRover); Bioclimatic niches at regional scales are represented on panels: a-c; ecological niches at regional scales: d-f; and ecological niches at local scales: g-i. Legend -  OL: Ochotona ladacensis, ON: Ochotona nubrica, OM: Ochotona macrotis, OL-H: Ochotona ladacensis high elevation, ON-H: Ochotona nubrica high elevation, ON-L: Ochotona nubrica low elevation, OM-H: Ochotona macrotis high elevation, OM-L:  Ochotona macrotis low elevation.</p>
                                 <p>Published in <i>Royal Society Open Science</i>. Read the paper here: <a href="https://royalsocietypublishing.org/rsos/article/13/10/250865/483601/Sympatric-pikas-partition-microhabitats" target="_blank">Sympatric pikas partition microhabitats differently across a spatial-elevational gradient</a></p>
-                            </div>
+                                </div>
+                                </div>
+                                </div>
                         </div>
 
                 
@@ -313,15 +395,23 @@
             Animal Behavior
         </button>
                             <div class="project-content" aria-hidden="true">
-                                <div class="project-highlight-title">
+                                <div class="subproject">
+                                <div class="subproject-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleSubproject(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSubproject(this);}">
+                                    <div class="project-highlight-title">
                                     Characterization of haying behavior by the Ladakh pika (Ochotona ladacensis) and the Nubra pika (Ochotona nubrica) from Changthang, Ladakh, India
                                     <p>Harsha Kumar, Senan D'souza, Dhanesh Ponnu and Nandini Rajamani</p>
                                 </div>
+                                    <img class="subproject-preview" src="images/Haypiles.png" alt="" />
+                                    <span class="subproject-hint">Click to read more &#9662;</span>
+                                </div>
+                                <div class="subproject-body">
                                 <p>To survive harsh winters, some pikas engage in haying—cutting and storing vegetation in haypiles for later use. We documented this behavior in Ladakh’s two burrowing species for the first time. Their food caching strategies differed: O. ladacensis (larger-bodied, more social, open landscapes) built large, central haypiles far from burrow entrances, often defended them, and cached fewer but more consistent plant types—typical of larder-hoarding. On the other hand, O. nubrica (smaller-bodied, less social, shrubby habitats) cached smaller, scattered piles closer to burrows, without defending them—more like scatter-hoarding. Both species cached nutrient-rich and even toxic or unpalatable plants, suggesting selective behavior. Surprisingly, some colonies didn’t hay at all, implying that haying may be a bet-hedging strategy; where pikas bet on the severity of winter before making decisions to construct haypiles. This variation offers an exciting window into how animals manage risk in unpredictable environments </p>
                               
                                 <img src="images/Haypiles.png" alt="Profile Picture" style="max-width: 60%; height: auto; border-radius: 0;" />  
                               <p>Figure 1: A - Haypile of O. ladacensis; B- Haypile of O. nubrica</p>
-                            </div>
+                                </div>
+                                </div>
+                                </div>
                         </div>
 
           <div class="project">
@@ -329,23 +419,39 @@
             Animal Physiology
         </button>
                             <div class="project-content" aria-hidden="true">
-                                <div class="project-highlight-title">
+                                <div class="subproject">
+                                <div class="subproject-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleSubproject(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSubproject(this);}">
+                                    <div class="project-highlight-title">
                                     Hummingbird Transcriptomics
                                     <p>Harsha Kumar and Anusha Shankar</p>
                                 </div>
+                                    <img class="subproject-preview" src="images/Transcriptomics.png" alt="" />
+                                    <span class="subproject-hint">Click to read more &#9662;</span>
+                                </div>
+                                <div class="subproject-body">
                                 <p>Hummingbirds regularly enter torpor—a reversible, state of metabolic suppression at night to manage energy budgets. Dr. Anusha Shankar, during her Rose Postdoctoral Fellowship at Cornell University, generated transcriptomic data from Calypte anna in three physiological states: torpor, transition, and normothermy. I am currently analyzing this dataset to identify differentially expressed genes across key tissues including the gut, liver, heart, lungs, and pectoral muscles. My goal is to uncover the gene networks and biological processes that regulate extreme metabolic flexibility in this system. This project offers insights into how vertebrates manage rapid shifts in energy use, with broader implications for human health and space exploration </p>
                               
                                 <img src="images/Transcriptomics.png" alt="Profile Picture" style="max-width: 60%; height: auto; border-radius: 0;" />  
                               <p>Figure 1: Thermal image of a Hummingbird thermoregulating actively © Anusha Shankar</p>
-                      <div class="project-highlight-title">
+                                </div>
+                                </div>
+                                <div class="subproject">
+                                <div class="subproject-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleSubproject(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSubproject(this);}">
+                                    <div class="project-highlight-title">
                                     Insect Diapause
                                     <p>Harsha Kumar, Julia Benny, Jay Phadke and Anusha Shankar</p>
                                 </div>
+                                    <img class="subproject-preview" src="images/Plodia lifecycle.png" alt="" />
+                                    <span class="subproject-hint">Click to read more &#9662;</span>
+                                </div>
+                                <div class="subproject-body">
                                 <p> Diapause is one of nature’s most extreme life-history adaptations, allowing insects to delay development and survive seasonal hardships—sometimes extending lifespans from one to nearly 30 years! Unlike quiescence, which reacts to unfavorable conditions and ends quickly when they improve, diapause anticipates harsh seasons and persists even after favorable cues return. I am studying how these two dormancy strategies differ across biological scales using a laboratory population of Plodia interpunctella. In this system, diapause can be reliably induced by exposing developing larvae to cold and short days that resemble winter conditions. I combine open-flow respirometry, behavioral assays (movement, re-feeding), and histological analysis to examine how organ systems like the fat body, gut, testes and malpighian tubules and nervous system respond during diapause. By identifying how development slows across organs, tissues, and cells, we can uncover principles that could inform pest control and life span extension. </p>
                               
                                 <img src="images/Plodia lifecycle.png" alt="Profile Picture" style="max-width: 60%; height: auto; border-radius: 0;" />  
                               <p>Figure 1: 24 day lifecyle of Plodia interpunctella</p>
-                            </div>
+                                </div>
+                                </div>
+                                </div>
                         </div>
 
                         </div>
@@ -562,6 +668,12 @@ function showSlides(n) {
                         buttons[i].setAttribute('aria-expanded', 'false');
                     }
                 });
+            }
+            function toggleSubproject(header) {
+                const sub = header.parentElement;
+                const isOpen = sub.classList.toggle('open');
+                header.setAttribute('aria-expanded', isOpen);
+                header.querySelector('.subproject-hint').innerHTML = isOpen ? 'Show less &#9652;' : 'Click to read more &#9662;';
             }
         </script>
 
