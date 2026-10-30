@@ -12,6 +12,15 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <style>
+            /* Cover page lines: tighter spacing, email in lowercase */
+            #header .content p.cover-line {
+                margin-bottom: 0.3rem;
+            }
+            #header .content p.cover-email {
+                text-transform: none;
+                letter-spacing: 0.05rem;
+                font-size: 0.9rem;
+            }
             .paper-title {
                 white-space: normal;
                 word-wrap: break-word;
@@ -31,9 +40,9 @@
                     <div class="inner">
                         <img src="images/Website_profile.jpg" alt="Profile Picture" style="max-width: 25%; height: auto; border-radius: 0;" />
                         <h1>Harsha Kumar</h1>
-                        <p>Behavioural Ecologist</p>
-                        <p><a href="mailto:tailedpalmfly@gmail.com">tailedpalmfly@gmail.com</a></p>
-                        <p>Post-doctoral fellow at TIFR Hyderabad</p>
+                        <p class="cover-line">Behavioural Ecologist</p>
+                        <p class="cover-line">Post-doctoral fellow at TIFR Hyderabad</p>
+                        <p class="cover-line cover-email"><a href="mailto:tailedpalmfly@gmail.com">tailedpalmfly@gmail.com</a></p>
                     </div>
                 </div>
                 <nav>
