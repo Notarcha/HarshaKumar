@@ -50,7 +50,8 @@
     <li><a href="#About_Me">About Me</a></li>
     <li><a href="#Projects">Projects</a></li>
     <li><a href="#Publications">Publications</a></li>
-    <li><a href="#Gallery">Photo Gallery</a></li>
+    <li><a href="#Gallery">Field Diaries</a></li>
+    <li><a href="#Art">Art</a></li>
 </ul>
                     <style>
                         /* Keep nav dividers even when the menu has an even number of items */
@@ -214,6 +215,55 @@
 .prev {
   left: 0;
 }
+
+/* Field Diaries albums */
+#Gallery .gallery-intro { margin-bottom: 1.2em; }
+#Gallery .album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1em;
+}
+#Gallery .album-card {
+  display: block;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  border-radius: 0.5em;
+  padding: 0.6em;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+#Gallery .album-card:hover { background: rgba(255,255,255,0.08); }
+#Gallery .album-cover {
+  aspect-ratio: 4 / 3;
+  border-radius: 0.35em;
+  overflow: hidden;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 0.6em;
+}
+#Gallery .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+#Gallery .album-name { display: block; font-weight: bold; letter-spacing: 0.08rem; overflow-wrap: anywhere; text-transform: uppercase; font-size: 0.8rem; }
+#Gallery .album-count { display: block; font-size: 0.75rem; opacity: 0.7; }
+#Gallery .album-back { font-size: 0.85rem; border-bottom: none; }
+#Gallery #album-photo { width: 100%; border-radius: 0.5em; }
+#Gallery .gallery-empty { text-align: center; padding: 3em 0; opacity: 0.7; margin: 0; }
+#Gallery .gallery-counter { text-align: center; font-size: 0.8rem; opacity: 0.7; margin-top: 0.8em; }
+#Gallery .caption { text-align: center; margin-top: 0.6em; }
+
+/* Art */
+#Art .gallery-intro { margin-bottom: 1.2em; }
+#Art .art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8em; }
+#Art .art-thumb { display: block; border: none; border-radius: 0.4em; overflow: hidden; aspect-ratio: 1 / 1; background: rgba(255,255,255,0.08); cursor: pointer; }
+#Art .art-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+#Art .art-thumb:hover img { transform: scale(1.04); }
+#art-lightbox { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(10,12,14,0.92); padding: 3em 1em 1em 1em; overflow-y: auto; }
+#art-lightbox.open { display: block; }
+#art-lightbox #art-photo { width: auto; max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; border-radius: 0.4em; }
+#art-lightbox .art-close { position: absolute; top: 0.3em; right: 0.6em; font-size: 2.5em; line-height: 1; border-bottom: none; text-decoration: none; }
+#art-lightbox .gallery-counter { text-align: center; font-size: 0.8rem; opacity: 0.7; margin-top: 0.8em; color: #fff; }
+#art-lightbox .caption { text-align: center; margin-top: 0.6em; color: #fff; }
+#art-lightbox .art-close { color: #fff; }
+
 .project-highlight-title p {
   font-size: 0.95em;
   margin-top: 0.3em;
@@ -574,49 +624,41 @@
                 </article>
 
                 <article id="Gallery">
-    <h2 class="major">Photo Gallery</h2>
-    <div class="slideshow-container">
-        <div class="mySlides fade">
-            <img src="images/IMG_0654.JPG" style="width:100%">
-            <div class="caption">Ladakh pikas boxing over theft of food caches</div>
+    <h2 class="major">Field Diaries</h2>
+    <p class="gallery-intro">Moments from my time out in the wilderness.</p>
+    <div id="album-list" class="album-grid"></div>
+    <div id="album-view" style="display:none">
+        <p><a class="album-back" href="javascript:void(0)" onclick="closeAlbum()">&larr; All albums</a></p>
+        <h3 id="album-title"></h3>
+        <div id="album-slides" class="slideshow-container">
+            <img id="album-photo" alt="" />
+            <p id="album-error" class="gallery-empty">This photo is not uploaded yet.</p>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        <div class="mySlides fade">
-            <img src="images/IMG_1202.JPG" style="width:100%">
-            <div class="caption">Freeze behavior of Wooly Hare</div>
-        </div>
-        <div class="mySlides fade">
-            <img src="images/IMG_1265.JPG" style="width:100%">
-            <div class="caption">Blue Sheep - Mom with lamb</div>
-        </div>
-        <div class="mySlides fade">
-            <img src="images/IMG_1449.JPG" style="width:100%">
-            <div class="caption">Large eared pika</div>
-        </div>
-        <div class="mySlides fade">
-            <img src="images/IMG_1464.JPG" style="width:100%">
-            <div class="caption">Large eared pika</div>
-        </div>
-        <div class="mySlides fade">
-            <img src="images/IMG_3540.JPG" style="width:100%">
-            <div class="caption">Red Fox</div>
-        </div>
-         <div class="mySlides fade">
-            <img src="images/IMG_4003.JPG" style="width:100%">
-             <div class="caption">Ladakh pika basking on a rock</div>
-        </div>
-         <div class="mySlides fade">
-            <img src="images/IMG_5084.JPG" style="width:100%">
-             <div class="caption">Himalayan Marmot with pups </div>
-        </div>
-         
-        <!-- Add more slides as needed -->
-
-        <!-- Next/prev buttons -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="caption" id="album-caption"></div>
+        <p class="gallery-counter" id="album-counter"></p>
+        <p id="album-none" class="gallery-empty">Photos coming soon.</p>
     </div>
 </article>
 
+
+                <!-- Art -->
+                <article id="Art">
+    <h2 class="major">Art</h2>
+    <p class="gallery-intro">Watercolours and sketches.</p>
+    <div id="art-grid" class="art-grid"></div>
+    <div id="art-lightbox" class="art-lightbox" onclick="event.stopPropagation(); if(event.target===this){closeArt();}">
+        <a class="art-close" href="javascript:void(0)" onclick="closeArt()">&times;</a>
+        <div class="slideshow-container">
+            <img id="art-photo" alt="" />
+            <a class="prev" onclick="plusArt(-1)">&#10094;</a>
+            <a class="next" onclick="plusArt(1)">&#10095;</a>
+        </div>
+        <div class="caption" id="art-caption"></div>
+        <p class="gallery-counter" id="art-counter"></p>
+    </div>
+</article>
 
                 <!-- Elements (untouched, left as original) -->
                 <article id="elements">
@@ -632,25 +674,243 @@
 
         </div>
 <script>
-var slideIndex = 1;
-showSlides(slideIndex);
+/* ===================== FIELD DIARIES ALBUMS: edit this list =====================
+   Each album has a name and a list of photos from the images folder.
+   To add a photo: upload it to images, then add a line { src: "images/FILE", caption: "" }.
+   File names must match exactly. If the ending differs (.jpg / .jpeg / .JPG), the page finds it anyway.
+   Use JPG files: HEIC and RAW (.CR2) photos do not display in most browsers.
+   The first photo that loads in each album is used as its cover.
+================================================================================== */
+var ALBUMS = [
+  { name: "Alpine Grasslands", photos: [
+      { src: "images/IMG_0654.JPG", caption: "Ladakh pikas boxing over theft of food caches" },
+      { src: "images/IMG_1202.JPG", caption: "Freeze behavior of Wooly Hare" },
+      { src: "images/IMG_1265.JPG", caption: "Blue Sheep - Mom with lamb" },
+      { src: "images/IMG_1449.JPG", caption: "Large eared pika" },
+      { src: "images/IMG_1464.JPG", caption: "Large eared pika" },
+      { src: "images/IMG_3540.JPG", caption: "Red Fox" },
+      { src: "images/IMG_4003.JPG", caption: "Ladakh pika basking on a rock" },
+      { src: "images/IMG_5084.JPG", caption: "Himalayan Marmot with pups" },
+      { src: "images/RUM-OM1-HK15.JPG", caption: "" },
+      { src: "images/ETRV1418.JPG", caption: "" },
+      { src: "images/FQAP8239.JPG", caption: "" },
+      { src: "images/IMG_1165.JPG", caption: "" },
+      { src: "images/IMG_1192.JPG", caption: "" },
+      { src: "images/IMG_2831.jpg", caption: "" },
+      { src: "images/IMG_3685.jpg", caption: "" },
+      { src: "images/IMG_3916.JPG", caption: "" },
+      { src: "images/IMG_4727.jpg", caption: "" },
+      { src: "images/IMG_4764.jpg", caption: "" },
+      { src: "images/IMG_4946.jpg", caption: "" },
+      { src: "images/IMG_4952.jpg", caption: "" },
+      { src: "images/IMG_4990.JPG", caption: "" },
+      { src: "images/IMG_5012.jpg", caption: "" },
+      { src: "images/IMG_5365.JPG", caption: "" },
+      { src: "images/IMG_5375.JPG", caption: "" },
+      { src: "images/IMG_5622.JPG", caption: "" },
+      { src: "images/IMG_5685.JPG", caption: "" },
+      { src: "images/IMG_5692.JPG", caption: "" },
+      { src: "images/IMG_5715 2.JPG", caption: "" },
+      { src: "images/IMG_5715.JPG", caption: "" },
+      { src: "images/IMG_5722.JPG", caption: "" },
+      { src: "images/IMG_5744.JPG", caption: "" },
+      { src: "images/IMG_5925.jpg", caption: "" },
+      { src: "images/IMG_6022.JPG", caption: "" },
+      { src: "images/IMG_9789.JPG", caption: "" },
+      { src: "images/TSK_1_March2019.jpeg", caption: "" }
+  ]},
+  { name: "Travel", photos: [
+      { src: "images/IMG_8335.JPG", caption: "" },
+      { src: "images/IMG_1578.jpg", caption: "" },
+      { src: "images/IMG_20210828_072202.jpg", caption: "" },
+      { src: "images/IMG_20220410_073533.jpg", caption: "" },
+      { src: "images/IMG_3115.jpg", caption: "" },
+      { src: "images/IMG_3237.jpg", caption: "" },
+      { src: "images/IMG_3609.jpg", caption: "" },
+      { src: "images/IMG_3610.jpg", caption: "" },
+      { src: "images/IMG_3664.jpg", caption: "" },
+      { src: "images/IMG_3673.jpg", caption: "" },
+      { src: "images/IMG_4291.JPG", caption: "" },
+      { src: "images/IMG_4297.jpg", caption: "" },
+      { src: "images/IMG_4522.jpg", caption: "" },
+      { src: "images/IMG_4584.jpg", caption: "" },
+      { src: "images/IMG_4778.jpg", caption: "" },
+      { src: "images/IMG_4842.jpg", caption: "" },
+      { src: "images/IMG_4916.jpg", caption: "" },
+      { src: "images/IMG_4945.jpg", caption: "" },
+      { src: "images/IMG_5559.jpeg", caption: "" },
+      { src: "images/IMG_5645.jpg", caption: "" },
+      { src: "images/IMG_6409.jpg", caption: "" },
+      { src: "images/IMG_7065.jpg", caption: "" },
+      { src: "images/IMG_7524.JPG", caption: "" },
+      { src: "images/IMG_9179.JPG", caption: "" },
+      { src: "images/IMG_9226.JPG", caption: "" },
+      { src: "images/WQLO9706.JPEG", caption: "" }
+  ]},
+  { name: "Arid Grasslands", photos: [
+      { src: "images/IMG_0635.JPG", caption: "" },
+      { src: "images/IMG_0985.JPG", caption: "" },
+      { src: "images/IMG_1026 2.JPG", caption: "" },
+      { src: "images/IMG_1494.JPG", caption: "" },
+      { src: "images/IMG_1656.JPG", caption: "" },
+      { src: "images/IMG_2570.JPG", caption: "" },
+      { src: "images/IMG_3880.JPG", caption: "" },
+      { src: "images/IMG_9635.JPG", caption: "" }
+  ]},
+  { name: "Forests", photos: [
+      { src: "images/IMG_0089.JPG", caption: "" },
+      { src: "images/IMG_3296.JPG", caption: "" },
+      { src: "images/IMG_0371.jpg", caption: "" },
+      { src: "images/Paradise Flycatcher_Male.JPG", caption: "Indian Paradise Flycatcher (male)" },
+      { src: "images/IMG_1339.JPG", caption: "" },
+      { src: "images/Spot breasted Fantail.JPG", caption: "Spot-breasted Fantail" },
+      { src: "images/IMG_3087.JPG", caption: "" }
+  ]}
+];
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+// Loads a photo; if the file isn't found, also tries .jpg / .jpeg / .JPG / .JPEG
+function loadPhoto(img, src, onFail) {
+  var base = src.replace(/\.(jpe?g|heic|cr2|png)$/i, "");
+  var tries = [src];
+  [".jpg", ".jpeg", ".JPG", ".JPEG"].forEach(function (ext) {
+    if (tries.indexOf(base + ext) === -1) { tries.push(base + ext); }
+  });
+  var k = 0;
+  img.onerror = function () {
+    k++;
+    if (k < tries.length) { img.src = tries[k]; }
+    else { img.onerror = null; if (onFail) { onFail(); } }
+  };
+  img.src = tries[0];
 }
-function currentSlide(n) {
-  showSlides(slideIndex = n);
+
+var currentAlbum = null;
+var slideIndex = 1;
+
+function renderAlbums() {
+  var list = document.getElementById("album-list");
+  list.innerHTML = "";
+  ALBUMS.forEach(function (album, i) {
+    var card = document.createElement("a");
+    card.className = "album-card";
+    card.href = "javascript:void(0)";
+    card.onclick = function () { openAlbum(i); };
+    var n = album.photos.length;
+    card.innerHTML = '<div class="album-cover"></div><span class="album-name">' + album.name + '</span><span class="album-count">' + (n ? n + (n === 1 ? " photo" : " photos") : "Coming soon") + '</span>';
+    tryCover(card.querySelector(".album-cover"), album.photos, 0);
+    list.appendChild(card);
+  });
 }
+function tryCover(box, photos, k) {
+  if (k >= photos.length || k > 5) { return; }
+  var img = document.createElement("img");
+  img.alt = "";
+  box.appendChild(img);
+  loadPhoto(img, photos[k].src, function () { img.remove(); tryCover(box, photos, k + 1); });
+}
+function openAlbum(i) {
+  currentAlbum = ALBUMS[i];
+  document.getElementById("album-list").style.display = "none";
+  document.querySelector("#Gallery .gallery-intro").style.display = "none";
+  document.getElementById("album-view").style.display = "block";
+  document.getElementById("album-title").textContent = currentAlbum.name;
+  var has = currentAlbum.photos.length > 0;
+  ["album-slides", "album-caption", "album-counter"].forEach(function (id) { document.getElementById(id).style.display = has ? "block" : "none"; });
+  document.getElementById("album-none").style.display = has ? "none" : "block";
+  if (has) { showSlides(slideIndex = 1); }
+}
+function closeAlbum() {
+  currentAlbum = null;
+  document.getElementById("album-view").style.display = "none";
+  document.getElementById("album-list").style.display = "";
+  document.querySelector("#Gallery .gallery-intro").style.display = "";
+}
+function plusSlides(n) { showSlides(slideIndex += n); }
+function currentSlide(n) { showSlides(slideIndex = n); }
 function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex-1].style.display = "block";
+  if (!currentAlbum) { return; }
+  var photos = currentAlbum.photos;
+  if (n > photos.length) { slideIndex = 1; }
+  if (n < 1) { slideIndex = photos.length; }
+  var photo = photos[slideIndex - 1];
+  var img = document.getElementById("album-photo");
+  var err = document.getElementById("album-error");
+  err.style.display = "none";
+  img.style.display = "block";
+  img.alt = photo.caption || "";
+  loadPhoto(img, photo.src, function () { img.style.display = "none"; err.style.display = "block"; });
+  document.getElementById("album-caption").textContent = photo.caption || "";
+  document.getElementById("album-counter").textContent = slideIndex + " / " + photos.length;
+  document.querySelectorAll("#album-slides .prev, #album-slides .next").forEach(function (a) {
+    a.style.display = photos.length > 1 ? "block" : "none";
+  });
 }
+document.addEventListener("keydown", function (e) {
+  if (!currentAlbum || document.getElementById("art-lightbox").classList.contains("open")) { return; }
+  if (e.key === "ArrowRight") { plusSlides(1); }
+  if (e.key === "ArrowLeft") { plusSlides(-1); }
+});
+renderAlbums();
+
+/* ===================== ART: edit this list =====================
+   Upload paintings to the images folder and add a line for each.
+   Add a caption between the quotes if you like.
+================================================================= */
+var ART = [
+  { src: "images/IMG_6200.jpeg", caption: "" },
+  { src: "images/IMG_6701.jpeg", caption: "" },
+  { src: "images/IMG_6703.jpeg", caption: "" },
+  { src: "images/IMG_6704.jpeg", caption: "" },
+  { src: "images/IMG_6871.jpeg", caption: "" },
+  { src: "images/IMG_6892.jpeg", caption: "" },
+  { src: "images/IMG_7092.jpeg", caption: "" }
+];
+var artIndex = 0;
+function renderArt() {
+  // The viewer sits on top of the whole page, so it is moved out of the Art box
+  document.body.appendChild(document.getElementById("art-lightbox"));
+  var grid = document.getElementById("art-grid");
+  ART.forEach(function (piece, i) {
+    var a = document.createElement("a");
+    a.className = "art-thumb";
+    a.href = "javascript:void(0)";
+    a.onclick = function () { openArt(i); };
+    var img = document.createElement("img");
+    img.alt = piece.caption || "Artwork";
+    img.loading = "lazy";
+    a.appendChild(img);
+    grid.appendChild(a);
+    loadPhoto(img, piece.src, function () { a.remove(); });
+  });
+}
+function openArt(i) {
+  artIndex = i;
+  document.getElementById("art-lightbox").classList.add("open");
+  showArt();
+}
+function closeArt() { document.getElementById("art-lightbox").classList.remove("open"); }
+function plusArt(n) { artIndex = (artIndex + n + ART.length) % ART.length; showArt(); }
+function showArt() {
+  var piece = ART[artIndex];
+  var img = document.getElementById("art-photo");
+  img.alt = piece.caption || "Artwork";
+  loadPhoto(img, piece.src);
+  document.getElementById("art-caption").textContent = piece.caption || "";
+  document.getElementById("art-counter").textContent = (artIndex + 1) + " / " + ART.length;
+}
+window.addEventListener("keydown", function (e) {
+  if (!document.getElementById("art-lightbox").classList.contains("open")) { return; }
+  if (e.key === "ArrowRight") { plusArt(1); }
+  if (e.key === "ArrowLeft") { plusArt(-1); }
+  if (e.key === "Escape") { closeArt(); artJustClosed = true; e.stopImmediatePropagation(); e.preventDefault(); }
+}, true);
+// Stop the Escape key from also closing the whole Art tab while a painting is open
+window.addEventListener("keyup", function (e) {
+  if (e.key === "Escape" && artJustClosed) { artJustClosed = false; e.stopImmediatePropagation(); }
+}, true);
+var artJustClosed = false;
+renderArt();
+
 </script>
         <!-- BG -->
         <div id="bg"></div>
