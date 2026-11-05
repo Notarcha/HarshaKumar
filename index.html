@@ -246,6 +246,7 @@
 #Gallery .album-count { display: block; font-size: 0.75rem; opacity: 0.7; }
 #Gallery .album-back { font-size: 0.85rem; border-bottom: none; }
 #Gallery #album-photo { width: 100%; border-radius: 0.5em; }
+#Gallery #album-slides { min-height: 260px; }
 #Gallery .gallery-empty { text-align: center; padding: 3em 0; opacity: 0.7; margin: 0; }
 #Gallery .gallery-counter { text-align: center; font-size: 0.8rem; opacity: 0.7; margin-top: 0.8em; }
 #Gallery .caption { text-align: center; margin-top: 0.6em; }
@@ -632,7 +633,6 @@
         <h3 id="album-title"></h3>
         <div id="album-slides" class="slideshow-container">
             <img id="album-photo" alt="" />
-            <p id="album-error" class="gallery-empty">This photo is not uploaded yet.</p>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
@@ -825,7 +825,8 @@ function closeAlbum() {
   document.getElementById("album-list").style.display = "";
   document.querySelector("#Gallery .gallery-intro").style.display = "";
 }
-function plusSlides(n) { showSlides(slideIndex += n); }
+var slideDir = 1;
+function plusSlides(n) { slideDir = n < 0 ? -1 : 1; showSlides(slideIndex += n); }
 function currentSlide(n) { showSlides(slideIndex = n); }
 function showSlides(n) {
   if (!currentAlbum) { return; }
@@ -834,11 +835,22 @@ function showSlides(n) {
   if (n < 1) { slideIndex = photos.length; }
   var photo = photos[slideIndex - 1];
   var img = document.getElementById("album-photo");
-  var err = document.getElementById("album-error");
-  err.style.display = "none";
   img.style.display = "block";
+  img.style.visibility = "hidden";
+  img.onload = function () { img.style.visibility = "visible"; };
   img.alt = photo.caption || "";
-  loadPhoto(img, photo.src, function () { img.style.display = "none"; err.style.display = "block"; });
+  loadPhoto(img, photo.src, function () {
+    // Photo missing: drop it from the album and move on to the next one
+    var album = currentAlbum;
+    var pos = album.photos.indexOf(photo);
+    if (pos === -1) { return; }
+    album.photos.splice(pos, 1);
+    renderAlbums();
+    if (currentAlbum !== album) { return; }
+    if (!album.photos.length) { openAlbum(ALBUMS.indexOf(album)); return; }
+    if (slideDir < 0) { slideIndex = pos; } else { slideIndex = pos + 1; }
+    showSlides(slideIndex);
+  });
   document.getElementById("album-caption").textContent = photo.caption || "";
   document.getElementById("album-counter").textContent = slideIndex + " / " + photos.length;
   document.querySelectorAll("#album-slides .prev, #album-slides .next").forEach(function (a) {
@@ -894,7 +906,14 @@ function showArt() {
   var piece = ART[artIndex];
   var img = document.getElementById("art-photo");
   img.alt = piece.caption || "Artwork";
-  loadPhoto(img, piece.src);
+  loadPhoto(img, piece.src, function () {
+    // Painting missing: drop it and show the next one
+    var pos = ART.indexOf(piece);
+    if (pos !== -1) { ART.splice(pos, 1); }
+    if (!ART.length) { closeArt(); return; }
+    artIndex = artIndex % ART.length;
+    showArt();
+  });
   document.getElementById("art-caption").textContent = piece.caption || "";
   document.getElementById("art-counter").textContent = (artIndex + 1) + " / " + ART.length;
 }
