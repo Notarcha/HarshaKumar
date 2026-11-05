@@ -217,7 +217,7 @@
 }
 
 /* Field Diaries albums */
-#Gallery .gallery-intro { margin-bottom: 1.2em; }
+#Gallery .gallery-intro, #Art .gallery-intro { margin-bottom: 1.2em; }
 #Gallery .album-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -245,25 +245,36 @@
 #Gallery .album-name { display: block; font-weight: bold; letter-spacing: 0.08rem; overflow-wrap: anywhere; text-transform: uppercase; font-size: 0.8rem; }
 #Gallery .album-count { display: block; font-size: 0.75rem; opacity: 0.7; }
 #Gallery .album-back { font-size: 0.85rem; border-bottom: none; }
-#Gallery #album-photo { width: 100%; border-radius: 0.5em; }
-#Gallery #album-slides { min-height: 260px; }
-#Gallery .gallery-empty { text-align: center; padding: 3em 0; opacity: 0.7; margin: 0; }
-#Gallery .gallery-counter { text-align: center; font-size: 0.8rem; opacity: 0.7; margin-top: 0.8em; }
-#Gallery .caption { text-align: center; margin-top: 0.6em; }
 
-/* Art */
-#Art .gallery-intro { margin-bottom: 1.2em; }
-#Art .art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8em; }
-#Art .art-thumb { display: block; border: none; border-radius: 0.4em; overflow: hidden; aspect-ratio: 1 / 1; background: rgba(255,255,255,0.08); cursor: pointer; }
-#Art .art-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
-#Art .art-thumb:hover img { transform: scale(1.04); }
-#art-lightbox { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(10,12,14,0.92); padding: 3em 1em 1em 1em; overflow-y: auto; }
-#art-lightbox.open { display: block; }
-#art-lightbox #art-photo { width: auto; max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; border-radius: 0.4em; }
-#art-lightbox .art-close { position: absolute; top: 0.3em; right: 0.6em; font-size: 2.5em; line-height: 1; border-bottom: none; text-decoration: none; }
-#art-lightbox .gallery-counter { text-align: center; font-size: 0.8rem; opacity: 0.7; margin-top: 0.8em; color: #fff; }
-#art-lightbox .caption { text-align: center; margin-top: 0.6em; color: #fff; }
-#art-lightbox .art-close { color: #fff; }
+/* Slideshows (Field Diaries and Art share this look) */
+.show-frame { min-height: 260px; }
+.show-photo { width: 100%; border-radius: 0.5em; display: block; cursor: zoom-in; }
+.show-hint { text-align: center; font-size: 0.75rem; opacity: 0.6; margin: 0.6em 0 0 0; }
+.gallery-empty { text-align: center; padding: 3em 0; opacity: 0.7; margin: 0; }
+.gallery-counter { text-align: center; font-size: 0.8rem; opacity: 0.7; margin-top: 0.4em; }
+#main .caption { text-align: center; margin-top: 0.6em; }
+
+/* Full-screen viewer */
+#viewer { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 20000; background: #000; }
+#viewer.open { display: block; }
+#viewer img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
+#viewer .viewer-btn {
+  position: absolute; color: #fff; background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.35); border-radius: 50%;
+  width: 3rem; height: 3rem; line-height: 3rem; text-align: center; font-size: 1.6rem; cursor: pointer;
+  text-decoration: none; transition: opacity 0.4s; user-select: none;
+}
+#viewer .viewer-btn:hover { background: rgba(0,0,0,0.6); }
+#viewer .viewer-close { top: 1rem; right: 1rem; }
+#viewer .viewer-prev { left: 1rem; top: 50%; margin-top: -1.5rem; }
+#viewer .viewer-next { right: 1rem; top: 50%; margin-top: -1.5rem; }
+#viewer .viewer-info {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 1.2rem 1rem 1rem; text-align: center; color: #fff;
+  font-size: 0.85rem; background: linear-gradient(transparent, rgba(0,0,0,0.6)); transition: opacity 0.4s;
+}
+#viewer .viewer-info span { display: block; }
+#viewer .viewer-info #viewer-counter { opacity: 0.7; font-size: 0.75rem; margin-top: 0.2rem; }
+#viewer.idle { cursor: none; }
+#viewer.idle .viewer-btn, #viewer.idle .viewer-info { opacity: 0; pointer-events: none; }
 
 .project-highlight-title p {
   font-size: 0.95em;
@@ -631,33 +642,15 @@
     <div id="album-view" style="display:none">
         <p><a class="album-back" href="javascript:void(0)" onclick="closeAlbum()">&larr; All albums</a></p>
         <h3 id="album-title"></h3>
-        <div id="album-slides" class="slideshow-container">
-            <img id="album-photo" alt="" />
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-        <div class="caption" id="album-caption"></div>
-        <p class="gallery-counter" id="album-counter"></p>
-        <p id="album-none" class="gallery-empty">Photos coming soon.</p>
+        <div id="album-show"></div>
     </div>
 </article>
-
 
                 <!-- Art -->
                 <article id="Art">
     <h2 class="major">Art</h2>
     <p class="gallery-intro">Watercolours and sketches.</p>
-    <div id="art-grid" class="art-grid"></div>
-    <div id="art-lightbox" class="art-lightbox" onclick="event.stopPropagation(); if(event.target===this){closeArt();}">
-        <a class="art-close" href="javascript:void(0)" onclick="closeArt()">&times;</a>
-        <div class="slideshow-container">
-            <img id="art-photo" alt="" />
-            <a class="prev" onclick="plusArt(-1)">&#10094;</a>
-            <a class="next" onclick="plusArt(1)">&#10095;</a>
-        </div>
-        <div class="caption" id="art-caption"></div>
-        <p class="gallery-counter" id="art-counter"></p>
-    </div>
+    <div id="art-show"></div>
 </article>
 
                 <!-- Elements (untouched, left as original) -->
@@ -673,13 +666,21 @@
             </footer>
 
         </div>
+        <!-- Full-screen photo viewer -->
+        <div id="viewer" onclick="event.stopPropagation()">
+            <img id="viewer-photo" alt="" />
+            <a class="viewer-btn viewer-close" href="javascript:void(0)" onclick="Viewer.close()" aria-label="Close">&times;</a>
+            <a class="viewer-btn viewer-prev" href="javascript:void(0)" onclick="Viewer.go(-1)" aria-label="Previous">&#10094;</a>
+            <a class="viewer-btn viewer-next" href="javascript:void(0)" onclick="Viewer.go(1)" aria-label="Next">&#10095;</a>
+            <div class="viewer-info"><span id="viewer-caption"></span><span id="viewer-counter"></span></div>
+        </div>
+
 <script>
 /* ===================== FIELD DIARIES ALBUMS: edit this list =====================
    Each album has a name and a list of photos from the images folder.
    To add a photo: upload it to images, then add a line { src: "images/FILE", caption: "" }.
-   File names must match exactly. If the ending differs (.jpg / .jpeg / .JPG), the page finds it anyway.
-   Use JPG files: HEIC and RAW (.CR2) photos do not display in most browsers.
-   The first photo that loads in each album is used as its cover.
+   If the file ending differs (.jpg / .jpeg / .JPG), the page finds it anyway.
+   Photos that are missing are skipped. The first photo that loads is the album cover.
 ================================================================================== */
 var ALBUMS = [
   { name: "Alpine Grasslands", photos: [
@@ -768,102 +769,6 @@ var ALBUMS = [
   ]}
 ];
 
-// Loads a photo; if the file isn't found, also tries .jpg / .jpeg / .JPG / .JPEG
-function loadPhoto(img, src, onFail) {
-  var base = src.replace(/\.(jpe?g|heic|cr2|png)$/i, "");
-  var tries = [src];
-  [".jpg", ".jpeg", ".JPG", ".JPEG"].forEach(function (ext) {
-    if (tries.indexOf(base + ext) === -1) { tries.push(base + ext); }
-  });
-  var k = 0;
-  img.onerror = function () {
-    k++;
-    if (k < tries.length) { img.src = tries[k]; }
-    else { img.onerror = null; if (onFail) { onFail(); } }
-  };
-  img.src = tries[0];
-}
-
-var currentAlbum = null;
-var slideIndex = 1;
-
-function renderAlbums() {
-  var list = document.getElementById("album-list");
-  list.innerHTML = "";
-  ALBUMS.forEach(function (album, i) {
-    var card = document.createElement("a");
-    card.className = "album-card";
-    card.href = "javascript:void(0)";
-    card.onclick = function () { openAlbum(i); };
-    var n = album.photos.length;
-    card.innerHTML = '<div class="album-cover"></div><span class="album-name">' + album.name + '</span><span class="album-count">' + (n ? n + (n === 1 ? " photo" : " photos") : "Coming soon") + '</span>';
-    tryCover(card.querySelector(".album-cover"), album.photos, 0);
-    list.appendChild(card);
-  });
-}
-function tryCover(box, photos, k) {
-  if (k >= photos.length || k > 5) { return; }
-  var img = document.createElement("img");
-  img.alt = "";
-  box.appendChild(img);
-  loadPhoto(img, photos[k].src, function () { img.remove(); tryCover(box, photos, k + 1); });
-}
-function openAlbum(i) {
-  currentAlbum = ALBUMS[i];
-  document.getElementById("album-list").style.display = "none";
-  document.querySelector("#Gallery .gallery-intro").style.display = "none";
-  document.getElementById("album-view").style.display = "block";
-  document.getElementById("album-title").textContent = currentAlbum.name;
-  var has = currentAlbum.photos.length > 0;
-  ["album-slides", "album-caption", "album-counter"].forEach(function (id) { document.getElementById(id).style.display = has ? "block" : "none"; });
-  document.getElementById("album-none").style.display = has ? "none" : "block";
-  if (has) { showSlides(slideIndex = 1); }
-}
-function closeAlbum() {
-  currentAlbum = null;
-  document.getElementById("album-view").style.display = "none";
-  document.getElementById("album-list").style.display = "";
-  document.querySelector("#Gallery .gallery-intro").style.display = "";
-}
-var slideDir = 1;
-function plusSlides(n) { slideDir = n < 0 ? -1 : 1; showSlides(slideIndex += n); }
-function currentSlide(n) { showSlides(slideIndex = n); }
-function showSlides(n) {
-  if (!currentAlbum) { return; }
-  var photos = currentAlbum.photos;
-  if (n > photos.length) { slideIndex = 1; }
-  if (n < 1) { slideIndex = photos.length; }
-  var photo = photos[slideIndex - 1];
-  var img = document.getElementById("album-photo");
-  img.style.display = "block";
-  img.style.visibility = "hidden";
-  img.onload = function () { img.style.visibility = "visible"; };
-  img.alt = photo.caption || "";
-  loadPhoto(img, photo.src, function () {
-    // Photo missing: drop it from the album and move on to the next one
-    var album = currentAlbum;
-    var pos = album.photos.indexOf(photo);
-    if (pos === -1) { return; }
-    album.photos.splice(pos, 1);
-    renderAlbums();
-    if (currentAlbum !== album) { return; }
-    if (!album.photos.length) { openAlbum(ALBUMS.indexOf(album)); return; }
-    if (slideDir < 0) { slideIndex = pos; } else { slideIndex = pos + 1; }
-    showSlides(slideIndex);
-  });
-  document.getElementById("album-caption").textContent = photo.caption || "";
-  document.getElementById("album-counter").textContent = slideIndex + " / " + photos.length;
-  document.querySelectorAll("#album-slides .prev, #album-slides .next").forEach(function (a) {
-    a.style.display = photos.length > 1 ? "block" : "none";
-  });
-}
-document.addEventListener("keydown", function (e) {
-  if (!currentAlbum || document.getElementById("art-lightbox").classList.contains("open")) { return; }
-  if (e.key === "ArrowRight") { plusSlides(1); }
-  if (e.key === "ArrowLeft") { plusSlides(-1); }
-});
-renderAlbums();
-
 /* ===================== ART: edit this list =====================
    Upload paintings to the images folder and add a line for each.
    Add a caption between the quotes if you like.
@@ -877,58 +782,242 @@ var ART = [
   { src: "images/IMG_6892.jpeg", caption: "" },
   { src: "images/IMG_7092.jpeg", caption: "" }
 ];
-var artIndex = 0;
-function renderArt() {
-  // The viewer sits on top of the whole page, so it is moved out of the Art box
-  document.body.appendChild(document.getElementById("art-lightbox"));
-  var grid = document.getElementById("art-grid");
-  ART.forEach(function (piece, i) {
-    var a = document.createElement("a");
-    a.className = "art-thumb";
-    a.href = "javascript:void(0)";
-    a.onclick = function () { openArt(i); };
-    var img = document.createElement("img");
-    img.alt = piece.caption || "Artwork";
-    img.loading = "lazy";
-    a.appendChild(img);
-    grid.appendChild(a);
-    loadPhoto(img, piece.src, function () { a.remove(); });
+
+// Loads a photo; if the file isn't found, also tries .jpg / .jpeg / .JPG / .JPEG
+function loadPhoto(img, src, onOk, onFail) {
+  var base = src.replace(/\.(jpe?g|heic|cr2|png)$/i, "");
+  var tries = [src];
+  [".jpg", ".jpeg", ".JPG", ".JPEG"].forEach(function (ext) {
+    if (tries.indexOf(base + ext) === -1) { tries.push(base + ext); }
   });
+  var k = 0;
+  img.onload = function () { if (onOk) { onOk(); } };
+  img.onerror = function () {
+    k++;
+    if (k < tries.length) { img.src = tries[k]; }
+    else { img.onerror = null; if (onFail) { onFail(); } }
+  };
+  img.src = tries[0];
 }
-function openArt(i) {
-  artIndex = i;
-  document.getElementById("art-lightbox").classList.add("open");
-  showArt();
+
+/* ---------- Inline slideshow (used by every album and by Art) ---------- */
+function Slideshow(box, emptyText, onChange) {
+  var self = this;
+  this.list = [];
+  this.i = 0;
+  this.dir = 1;
+  this.onChange = onChange;
+  box.innerHTML =
+    '<div class="slideshow-container show-frame">' +
+      '<img class="show-photo" alt="" />' +
+      '<a class="prev">&#10094;</a><a class="next">&#10095;</a>' +
+    '</div>' +
+    '<div class="caption"></div>' +
+    '<p class="gallery-counter"></p>' +
+    '<p class="show-hint">Tap or click the photo to see it full screen</p>' +
+    '<p class="gallery-empty" style="display:none">' + emptyText + '</p>';
+  this.frame = box.querySelector(".show-frame");
+  this.img = box.querySelector(".show-photo");
+  this.caption = box.querySelector(".caption");
+  this.counter = box.querySelector(".gallery-counter");
+  this.hint = box.querySelector(".show-hint");
+  this.empty = box.querySelector(".gallery-empty");
+  this.arrows = box.querySelectorAll(".prev, .next");
+  box.querySelector(".prev").onclick = function () { self.go(-1); };
+  box.querySelector(".next").onclick = function () { self.go(1); };
+  this.img.onclick = function () { if (self.list.length) { Viewer.open(self); } };
 }
-function closeArt() { document.getElementById("art-lightbox").classList.remove("open"); }
-function plusArt(n) { artIndex = (artIndex + n + ART.length) % ART.length; showArt(); }
-function showArt() {
-  var piece = ART[artIndex];
-  var img = document.getElementById("art-photo");
-  img.alt = piece.caption || "Artwork";
-  loadPhoto(img, piece.src, function () {
-    // Painting missing: drop it and show the next one
-    var pos = ART.indexOf(piece);
-    if (pos !== -1) { ART.splice(pos, 1); }
-    if (!ART.length) { closeArt(); return; }
-    artIndex = artIndex % ART.length;
-    showArt();
-  });
-  document.getElementById("art-caption").textContent = piece.caption || "";
-  document.getElementById("art-counter").textContent = (artIndex + 1) + " / " + ART.length;
-}
+Slideshow.prototype.setList = function (list) { this.list = list; this.i = 0; this.dir = 1; this.show(); };
+Slideshow.prototype.go = function (n) {
+  if (!this.list.length) { return; }
+  this.dir = n < 0 ? -1 : 1;
+  this.i = (this.i + n + this.list.length) % this.list.length;
+  this.show();
+};
+Slideshow.prototype.drop = function (photo) {
+  // A photo that can't be found is removed from the list for good
+  var pos = this.list.indexOf(photo);
+  if (pos === -1) { return -1; }
+  this.list.splice(pos, 1);
+  if (this.onChange) { this.onChange(); }
+  return pos;
+};
+Slideshow.prototype.show = function () {
+  var self = this;
+  var has = this.list.length > 0;
+  [this.frame, this.caption, this.counter, this.hint].forEach(function (el) { el.style.display = has ? "" : "none"; });
+  this.empty.style.display = has ? "none" : "block";
+  if (!has) { return; }
+  if (this.i >= this.list.length) { this.i = 0; }
+  var photo = this.list[this.i];
+  this.img.style.visibility = "hidden";
+  this.img.alt = photo.caption || "";
+  for (var a = 0; a < this.arrows.length; a++) { this.arrows[a].style.display = this.list.length > 1 ? "block" : "none"; }
+  this.caption.textContent = photo.caption || "";
+  this.counter.textContent = (this.i + 1) + " / " + this.list.length;
+  loadPhoto(this.img, photo.src,
+    function () { if (self.list[self.i] === photo) { self.img.style.visibility = "visible"; } },
+    function () {
+      var pos = self.drop(photo);
+      if (pos === -1) { return; }
+      self.i = self.dir < 0 ? pos - 1 : pos;
+      if (self.i < 0) { self.i = self.list.length - 1; }
+      self.show();
+    });
+};
+
+/* ---------- Full-screen viewer ---------- */
+var Viewer = {
+  el: null, img: null, show: null, i: 0, dir: 1, idleTimer: null, swallowEsc: false,
+  init: function () {
+    this.el = document.getElementById("viewer");
+    this.img = document.getElementById("viewer-photo");
+    var v = this;
+    ["mousemove", "touchstart"].forEach(function (ev) { v.el.addEventListener(ev, function () { v.wake(); }, { passive: true }); });
+    var x0 = null;
+    this.el.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    this.el.addEventListener("touchend", function (e) {
+      if (x0 === null) { return; }
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) { v.go(dx < 0 ? 1 : -1); }
+      x0 = null;
+    });
+    document.addEventListener("fullscreenchange", function () {
+      if (!document.fullscreenElement && v.el.classList.contains("open")) { v.close(); }
+    });
+  },
+  open: function (show) {
+    this.show = show;
+    this.i = show.i;
+    this.el.classList.add("open");
+    document.documentElement.style.overflow = "hidden";
+    if (this.el.requestFullscreen) { this.el.requestFullscreen().catch(function () {}); }
+    this.render();
+    this.wake();
+  },
+  close: function () {
+    if (!this.el.classList.contains("open")) { return; }
+    this.el.classList.remove("open");
+    document.documentElement.style.overflow = "";
+    this.swallowEsc = true;
+    var v = this;
+    setTimeout(function () { v.swallowEsc = false; }, 600);
+    if (document.fullscreenElement && document.exitFullscreen) { document.exitFullscreen().catch(function () {}); }
+    if (this.show) { this.show.i = Math.min(this.i, Math.max(this.show.list.length - 1, 0)); this.show.show(); }
+  },
+  go: function (n) {
+    var list = this.show.list;
+    if (!list.length) { return; }
+    this.dir = n < 0 ? -1 : 1;
+    this.i = (this.i + n + list.length) % list.length;
+    this.render();
+    this.wake();
+  },
+  render: function () {
+    var v = this, list = this.show.list;
+    if (!list.length) { this.close(); return; }
+    if (this.i >= list.length) { this.i = 0; }
+    var photo = list[this.i];
+    this.img.style.visibility = "hidden";
+    this.img.alt = photo.caption || "";
+    document.getElementById("viewer-caption").textContent = photo.caption || "";
+    document.getElementById("viewer-counter").textContent = (this.i + 1) + " / " + list.length;
+    var multi = list.length > 1 ? "" : "none";
+    this.el.querySelector(".viewer-prev").style.display = multi;
+    this.el.querySelector(".viewer-next").style.display = multi;
+    loadPhoto(this.img, photo.src,
+      function () { if (list[v.i] === photo) { v.img.style.visibility = "visible"; } },
+      function () {
+        var pos = v.show.drop(photo);
+        if (pos === -1) { return; }
+        v.i = v.dir < 0 ? pos - 1 : pos;
+        if (v.i < 0) { v.i = list.length - 1; }
+        v.render();
+      });
+  },
+  wake: function () {
+    var v = this;
+    this.el.classList.remove("idle");
+    clearTimeout(this.idleTimer);
+    this.idleTimer = setTimeout(function () { v.el.classList.add("idle"); }, 2500);
+  }
+};
+
+// Keyboard: arrows move, Esc closes the viewer (without also closing the tab behind it)
 window.addEventListener("keydown", function (e) {
-  if (!document.getElementById("art-lightbox").classList.contains("open")) { return; }
-  if (e.key === "ArrowRight") { plusArt(1); }
-  if (e.key === "ArrowLeft") { plusArt(-1); }
-  if (e.key === "Escape") { closeArt(); artJustClosed = true; e.stopImmediatePropagation(); e.preventDefault(); }
+  var open = Viewer.el && Viewer.el.classList.contains("open");
+  if (open) {
+    if (e.key === "ArrowRight") { Viewer.go(1); }
+    else if (e.key === "ArrowLeft") { Viewer.go(-1); }
+    else if (e.key === "Escape") { Viewer.close(); e.stopImmediatePropagation(); e.preventDefault(); }
+    return;
+  }
+  var active = location.hash === "#Art" ? artShow : (location.hash === "#Gallery" && currentAlbum ? albumShow : null);
+  if (active && e.key === "ArrowRight") { active.go(1); }
+  if (active && e.key === "ArrowLeft") { active.go(-1); }
 }, true);
-// Stop the Escape key from also closing the whole Art tab while a painting is open
 window.addEventListener("keyup", function (e) {
-  if (e.key === "Escape" && artJustClosed) { artJustClosed = false; e.stopImmediatePropagation(); }
+  if (e.key === "Escape" && (Viewer.swallowEsc || (Viewer.el && Viewer.el.classList.contains("open")))) { e.stopImmediatePropagation(); }
 }, true);
-var artJustClosed = false;
-renderArt();
+
+/* ---------- Field Diaries ---------- */
+var currentAlbum = null;
+var albumShow = null;
+
+function renderAlbums() {
+  var list = document.getElementById("album-list");
+  list.innerHTML = "";
+  ALBUMS.forEach(function (album, i) {
+    var card = document.createElement("a");
+    card.className = "album-card";
+    card.href = "javascript:void(0)";
+    card.onclick = function () { openAlbum(i); };
+    var n = album.photos.length;
+    card.innerHTML = '<div class="album-cover"></div><span class="album-name">' + album.name + '</span><span class="album-count">' + (n ? n + (n === 1 ? " photo" : " photos") : "Coming soon") + '</span>';
+    tryCover(card.querySelector(".album-cover"), album, 0);
+    list.appendChild(card);
+  });
+}
+function tryCover(box, album, k) {
+  if (k >= album.photos.length || k > 5) { return; }
+  var photo = album.photos[k];
+  var img = document.createElement("img");
+  img.alt = "";
+  box.appendChild(img);
+  loadPhoto(img, photo.src, null, function () {
+    img.remove();
+    var pos = album.photos.indexOf(photo);
+    if (pos !== -1) { album.photos.splice(pos, 1); renderAlbums(); }
+  });
+}
+function openAlbum(i) {
+  currentAlbum = ALBUMS[i];
+  document.getElementById("album-list").style.display = "none";
+  document.querySelector("#Gallery .gallery-intro").style.display = "none";
+  document.getElementById("album-view").style.display = "block";
+  document.getElementById("album-title").textContent = currentAlbum.name;
+  albumShow.setList(currentAlbum.photos);
+}
+function closeAlbum() {
+  currentAlbum = null;
+  document.getElementById("album-view").style.display = "none";
+  document.getElementById("album-list").style.display = "";
+  document.querySelector("#Gallery .gallery-intro").style.display = "";
+}
+
+/* ---------- Start up ---------- */
+var artShow = null;
+Viewer.init();
+albumShow = new Slideshow(document.getElementById("album-show"), "Photos coming soon.", function () {
+  var names = document.querySelectorAll("#album-list .album-count");
+  ALBUMS.forEach(function (album, i) {
+    var n = album.photos.length;
+    if (names[i]) { names[i].textContent = n ? n + (n === 1 ? " photo" : " photos") : "Coming soon"; }
+  });
+});
+artShow = new Slideshow(document.getElementById("art-show"), "Paintings coming soon.");
+artShow.setList(ART);
+renderAlbums();
 
 </script>
         <!-- BG -->
